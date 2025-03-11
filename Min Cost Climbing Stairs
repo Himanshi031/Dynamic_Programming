@@ -11,6 +11,19 @@ The total cost is 15.
 
 
 int minCostClimbingStairs(vector<int>& cost) {
+
+        # DP Solution (1st Approach)
+        int n = cost.size();
+        vector<int> dp(n + 1);  // dp[i] is minimum cost to reach to i_th floor
+        for (int i = 2; i <= n; i++) {
+            int jumpOneStep = dp[i - 1] + cost[i - 1];  // Minimum cost if we jump 1 step from floor (i-1)_th to i_th floor
+            int jumpTwoStep = dp[i - 2] + cost[i - 2];  // Minimum cost if we jump 2 steps from floor (i-2)_th to i_th floor
+            dp[i] = min(jumpOneStep, jumpTwoStep);
+        }
+        return dp[n];
+
+        # DP Solution (Space Optimization)
+
         int n = cost.size();
         int dp = 0, dp1 = 0, dp2 = 0;
 
