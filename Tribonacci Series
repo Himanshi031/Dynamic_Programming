@@ -1,0 +1,47 @@
+int tribonacci(int n) {
+
+         # APPROACH 1 ----- TLE
+        // if(n == 0){
+        //     return 0;
+        // }
+        // else if(n == 1 || n == 2){
+        //     return 1;
+        // }
+        // else{
+        //     return tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);
+        // }
+
+        # Second Approach
+
+        // vector<int>tribonacci={0,1,1};
+        // if(n<tribonacci.size())
+        // {
+        //     return tribonacci[n];
+        // }
+        // n-=2;
+        // while(n--)
+        // {
+        //     int N=tribonacci.size();
+        //     tribonacci.push_back(tribonacci[N-1]+tribonacci[N-2]+tribonacci[N-3]);
+        // }
+        // return tribonacci.back();
+
+        # DP Solution (Space Optimization)
+
+        int first = 0, sec = 1, third = 1;
+
+        if(n == 0){
+            return 0;
+        }
+        if(n == 1 || n == 2){
+            return 1;
+        }
+
+        for(int i = 3 ; i <= n ; i++){
+            int curr = first + sec + third;
+            first = sec;
+            sec = third;
+            third = curr;
+        }
+        return third;
+    }
